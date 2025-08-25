@@ -32,6 +32,8 @@ async def on_message(message):
             await message.channel.send(f'Doing backchodi')
         elif user_message.lower() == "bye":
             await message.channel.send(f'Bye {username}')
+        elif user_message.lower() == "is lohit gay":
+            await message.channel.send(f'Yes very gay. In fact so is Kishore')
         elif user_message.lower() == "tell me a joke":
             jokes = [" Can someone please shed more\
             light on how my lamp got stolen?",

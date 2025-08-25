@@ -28,10 +28,10 @@ async def on_message(message):
         if user_message.lower() == "hello" or user_message.lower() == "hi":
             await message.channel.send(f'Hello {username}')
             return
+        elif user_message.lower() == "what are you doing":
+            await message.channel.send(f'Doing backchodi')
         elif user_message.lower() == "bye":
             await message.channel.send(f'Bye {username}')
-        elif user_message.lower() == "What are you doing":
-            await message.channel.send(f'Doing backchodi')
         elif user_message.lower() == "tell me a joke":
             jokes = [" Can someone please shed more\
             light on how my lamp got stolen?",

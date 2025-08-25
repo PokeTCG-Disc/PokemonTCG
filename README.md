@@ -16,3 +16,4 @@ Add the discord API token :- TOKEN = 'token_id'
 How to run code
 
 python3 main.py
+testing

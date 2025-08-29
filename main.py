@@ -20,17 +20,6 @@ class Pokemon():
 @client.event
 async def on_ready():
     print("Logged in as a bot {0.user}".format(client))
-    # Choose a random Pokemon from pokemon.json and create a Pokemon object
-    with open('pokemon.json', 'r') as p:
-        data = json.load(p)
-        random_pokemon = random.choice(data)
-        id = random_pokemon.get('id')
-        name = random_pokemon.get('name')
-        types = random_pokemon.get('types')
-        level = random_pokemon.get('level')
-        pokemon_obj = Pokemon(id, name, types, level)
-        return pokemon_obj
-    
 
 # Function to open a pack and return a random Pokemon
 def open_pack():
@@ -63,8 +52,9 @@ async def on_message(message):
             await message.channel.send(f'Doing backchodi')
         elif user_message.lower() == "bye":
             await message.channel.send(f'Bye {username}')
-        elif user_message.lower() == "is lohit gay":
-            await message.channel.send(f'Yes very gay. In fact so is Kishore')
+        elif user_message.lower() == "open a pack":
+            pokemon = open_pack()
+            await message.channel.send(f'You got!! {pokemon.name}, Types: {pokemon.type}, Levle: {pokemon.level}')
         elif user_message.lower() == "tell me a joke":
             jokes = [" Can someone please shed more\
             light on how my lamp got stolen?",

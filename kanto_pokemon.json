@@ -1,455 +1,606 @@
 [
   {
-    "name": "Bulbasaur"
+    "name": "Bulbasaur",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
   },
   {
-    "name": "Ivysaur"
+    "name": "Ivysaur",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png"
   },
   {
-    "name": "Venusaur"
+    "name": "Venusaur",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png"
   },
   {
-    "name": "Charmander"
+    "name": "Charmander",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png"
   },
   {
-    "name": "Charmeleon"
+    "name": "Charmeleon",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/5.png"
   },
   {
-    "name": "Charizard"
+    "name": "Charizard",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png"
   },
   {
-    "name": "Squirtle"
+    "name": "Squirtle",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"
   },
   {
-    "name": "Wartortle"
+    "name": "Wartortle",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/8.png"
   },
   {
-    "name": "Blastoise"
+    "name": "Blastoise",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/9.png"
   },
   {
-    "name": "Caterpie"
+    "name": "Caterpie",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10.png"
   },
   {
-    "name": "Metapod"
+    "name": "Metapod",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/11.png"
   },
   {
-    "name": "Butterfree"
+    "name": "Butterfree",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/12.png"
   },
   {
-    "name": "Weedle"
+    "name": "Weedle",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/13.png"
   },
   {
-    "name": "Kakuna"
+    "name": "Kakuna",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/14.png"
   },
   {
-    "name": "Beedrill"
+    "name": "Beedrill",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/15.png"
   },
   {
-    "name": "Pidgey"
+    "name": "Pidgey",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/16.png"
   },
   {
-    "name": "Pidgeotto"
+    "name": "Pidgeotto",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/17.png"
   },
   {
-    "name": "Pidgeot"
+    "name": "Pidgeot",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/18.png"
   },
   {
-    "name": "Rattata"
+    "name": "Rattata",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/19.png"
   },
   {
-    "name": "Raticate"
+    "name": "Raticate",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/20.png"
   },
   {
-    "name": "Spearow"
+    "name": "Spearow",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/21.png"
   },
   {
-    "name": "Fearow"
+    "name": "Fearow",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/22.png"
   },
   {
-    "name": "Ekans"
+    "name": "Ekans",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/23.png"
   },
   {
-    "name": "Arbok"
+    "name": "Arbok",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/24.png"
   },
   {
-    "name": "Pikachu"
+    "name": "Pikachu",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
   },
   {
-    "name": "Raichu"
+    "name": "Raichu",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/26.png"
   },
   {
-    "name": "Sandshrew"
+    "name": "Sandshrew",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/27.png"
   },
   {
-    "name": "Sandslash"
+    "name": "Sandslash",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/28.png"
   },
   {
-    "name": "Nidoran\u2640"
+    "name": "Nidoran\u2640",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/29.png"
   },
   {
-    "name": "Nidorina"
+    "name": "Nidorina",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/30.png"
   },
   {
-    "name": "Nidoqueen"
+    "name": "Nidoqueen",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/31.png"
   },
   {
-    "name": "Nidoran\u2642"
+    "name": "Nidoran\u2642",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/32.png"
   },
   {
-    "name": "Nidorino"
+    "name": "Nidorino",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/33.png"
   },
   {
-    "name": "Nidoking"
+    "name": "Nidoking",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/34.png"
   },
   {
-    "name": "Clefairy"
+    "name": "Clefairy",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/35.png"
   },
   {
-    "name": "Clefable"
+    "name": "Clefable",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/36.png"
   },
   {
-    "name": "Vulpix"
+    "name": "Vulpix",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/37.png"
   },
   {
-    "name": "Ninetales"
+    "name": "Ninetales",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/38.png"
   },
   {
-    "name": "Jigglypuff"
+    "name": "Jigglypuff",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/39.png"
   },
   {
-    "name": "Wigglytuff"
+    "name": "Wigglytuff",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/40.png"
   },
   {
-    "name": "Zubat"
+    "name": "Zubat",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/41.png"
   },
   {
-    "name": "Golbat"
+    "name": "Golbat",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/42.png"
   },
   {
-    "name": "Oddish"
+    "name": "Oddish",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/43.png"
   },
   {
-    "name": "Gloom"
+    "name": "Gloom",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/44.png"
   },
   {
-    "name": "Vileplume"
+    "name": "Vileplume",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/45.png"
   },
   {
-    "name": "Paras"
+    "name": "Paras",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/46.png"
   },
   {
-    "name": "Parasect"
+    "name": "Parasect",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/47.png"
   },
   {
-    "name": "Venonat"
+    "name": "Venonat",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/48.png"
   },
   {
-    "name": "Venomoth"
+    "name": "Venomoth",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/49.png"
   },
   {
-    "name": "Diglett"
+    "name": "Diglett",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/50.png"
   },
   {
-    "name": "Dugtrio"
+    "name": "Dugtrio",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/51.png"
   },
   {
-    "name": "Meowth"
+    "name": "Meowth",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/52.png"
   },
   {
-    "name": "Persian"
+    "name": "Persian",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/53.png"
   },
   {
-    "name": "Psyduck"
+    "name": "Psyduck",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/54.png"
   },
   {
-    "name": "Golduck"
+    "name": "Golduck",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/55.png"
   },
   {
-    "name": "Mankey"
+    "name": "Mankey",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/56.png"
   },
   {
-    "name": "Primeape"
+    "name": "Primeape",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/57.png"
   },
   {
-    "name": "Growlithe"
+    "name": "Growlithe",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/58.png"
   },
   {
-    "name": "Arcanine"
+    "name": "Arcanine",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/59.png"
   },
   {
-    "name": "Poliwag"
+    "name": "Poliwag",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/60.png"
   },
   {
-    "name": "Poliwhirl"
+    "name": "Poliwhirl",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/61.png"
   },
   {
-    "name": "Poliwrath"
+    "name": "Poliwrath",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/62.png"
   },
   {
-    "name": "Abra"
+    "name": "Abra",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/63.png"
   },
   {
-    "name": "Kadabra"
+    "name": "Kadabra",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/64.png"
   },
   {
-    "name": "Alakazam"
+    "name": "Alakazam",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/65.png"
   },
   {
-    "name": "Machop"
+    "name": "Machop",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/66.png"
   },
   {
-    "name": "Machoke"
+    "name": "Machoke",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/67.png"
   },
   {
-    "name": "Machamp"
+    "name": "Machamp",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/68.png"
   },
   {
-    "name": "Bellsprout"
+    "name": "Bellsprout",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/69.png"
   },
   {
-    "name": "Weepinbell"
+    "name": "Weepinbell",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/70.png"
   },
   {
-    "name": "Victreebel"
+    "name": "Victreebel",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/71.png"
   },
   {
-    "name": "Tentacool"
+    "name": "Tentacool",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/72.png"
   },
   {
-    "name": "Tentacruel"
+    "name": "Tentacruel",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/73.png"
   },
   {
-    "name": "Geodude"
+    "name": "Geodude",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/74.png"
   },
   {
-    "name": "Graveler"
+    "name": "Graveler",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/75.png"
   },
   {
-    "name": "Golem"
+    "name": "Golem",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/76.png"
   },
   {
-    "name": "Ponyta"
+    "name": "Ponyta",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/77.png"
   },
   {
-    "name": "Rapidash"
+    "name": "Rapidash",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/78.png"
   },
   {
-    "name": "Slowpoke"
+    "name": "Slowpoke",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/79.png"
   },
   {
-    "name": "Slowbro"
+    "name": "Slowbro",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/80.png"
   },
   {
-    "name": "Magnemite"
+    "name": "Magnemite",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/81.png"
   },
   {
-    "name": "Magneton"
+    "name": "Magneton",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/82.png"
   },
   {
-    "name": "Farfetch\u2019d"
+    "name": "Farfetch\u2019d",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/83.png"
   },
   {
-    "name": "Doduo"
+    "name": "Doduo",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/84.png"
   },
   {
-    "name": "Dodrio"
+    "name": "Dodrio",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/85.png"
   },
   {
-    "name": "Seel"
+    "name": "Seel",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/86.png"
   },
   {
-    "name": "Dewgong"
+    "name": "Dewgong",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/87.png"
   },
   {
-    "name": "Grimer"
+    "name": "Grimer",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/88.png"
   },
   {
-    "name": "Muk"
+    "name": "Muk",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/89.png"
   },
   {
-    "name": "Shellder"
+    "name": "Shellder",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/90.png"
   },
   {
-    "name": "Cloyster"
+    "name": "Cloyster",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/91.png"
   },
   {
-    "name": "Gastly"
+    "name": "Gastly",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/92.png"
   },
   {
-    "name": "Haunter"
+    "name": "Haunter",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/93.png"
   },
   {
-    "name": "Gengar"
+    "name": "Gengar",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/94.png"
   },
   {
-    "name": "Onix"
+    "name": "Onix",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/95.png"
   },
   {
-    "name": "Drowzee"
+    "name": "Drowzee",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/96.png"
   },
   {
-    "name": "Hypno"
+    "name": "Hypno",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/97.png"
   },
   {
-    "name": "Krabby"
+    "name": "Krabby",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/98.png"
   },
   {
-    "name": "Kingler"
+    "name": "Kingler",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/99.png"
   },
   {
-    "name": "Voltorb"
+    "name": "Voltorb",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/100.png"
   },
   {
-    "name": "Electrode"
+    "name": "Electrode",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/101.png"
   },
   {
-    "name": "Exeggcute"
+    "name": "Exeggcute",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/102.png"
   },
   {
-    "name": "Exeggutor"
+    "name": "Exeggutor",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/103.png"
   },
   {
-    "name": "Cubone"
+    "name": "Cubone",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/104.png"
   },
   {
-    "name": "Marowak"
+    "name": "Marowak",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/105.png"
   },
   {
-    "name": "Hitmonlee"
+    "name": "Hitmonlee",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/106.png"
   },
   {
-    "name": "Hitmonchan"
+    "name": "Hitmonchan",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/107.png"
   },
   {
-    "name": "Lickitung"
+    "name": "Lickitung",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/108.png"
   },
   {
-    "name": "Koffing"
+    "name": "Koffing",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/109.png"
   },
   {
-    "name": "Weezing"
+    "name": "Weezing",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/110.png"
   },
   {
-    "name": "Rhyhorn"
+    "name": "Rhyhorn",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/111.png"
   },
   {
-    "name": "Rhydon"
+    "name": "Rhydon",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/112.png"
   },
   {
-    "name": "Chansey"
+    "name": "Chansey",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/113.png"
   },
   {
-    "name": "Tangela"
+    "name": "Tangela",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/114.png"
   },
   {
-    "name": "Kangaskhan"
+    "name": "Kangaskhan",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/115.png"
   },
   {
-    "name": "Horsea"
+    "name": "Horsea",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/116.png"
   },
   {
-    "name": "Seadra"
+    "name": "Seadra",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/117.png"
   },
   {
-    "name": "Goldeen"
+    "name": "Goldeen",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/118.png"
   },
   {
-    "name": "Seaking"
+    "name": "Seaking",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/119.png"
   },
   {
-    "name": "Staryu"
+    "name": "Staryu",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/120.png"
   },
   {
-    "name": "Starmie"
+    "name": "Starmie",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/121.png"
   },
   {
-    "name": "Mr. Mime"
+    "name": "Mr. Mime",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/122.png"
   },
   {
-    "name": "Scyther"
+    "name": "Scyther",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/123.png"
   },
   {
-    "name": "Jynx"
+    "name": "Jynx",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/124.png"
   },
   {
-    "name": "Electabuzz"
+    "name": "Electabuzz",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/125.png"
   },
   {
-    "name": "Magmar"
+    "name": "Magmar",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/126.png"
   },
   {
-    "name": "Pinsir"
+    "name": "Pinsir",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/127.png"
   },
   {
-    "name": "Tauros"
+    "name": "Tauros",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/128.png"
   },
   {
-    "name": "Magikarp"
+    "name": "Magikarp",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/129.png"
   },
   {
-    "name": "Gyarados"
+    "name": "Gyarados",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/130.png"
   },
   {
-    "name": "Lapras"
+    "name": "Lapras",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/131.png"
   },
   {
-    "name": "Ditto"
+    "name": "Ditto",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/132.png"
   },
   {
-    "name": "Eevee"
+    "name": "Eevee",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png"
   },
   {
-    "name": "Vaporeon"
+    "name": "Vaporeon",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/134.png"
   },
   {
-    "name": "Jolteon"
+    "name": "Jolteon",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/135.png"
   },
   {
-    "name": "Flareon"
+    "name": "Flareon",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/136.png"
   },
   {
-    "name": "Porygon"
+    "name": "Porygon",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/137.png"
   },
   {
-    "name": "Omanyte"
+    "name": "Omanyte",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/138.png"
   },
   {
-    "name": "Omastar"
+    "name": "Omastar",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/139.png"
   },
   {
-    "name": "Kabuto"
+    "name": "Kabuto",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/140.png"
   },
   {
-    "name": "Kabutops"
+    "name": "Kabutops",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/141.png"
   },
   {
-    "name": "Aerodactyl"
+    "name": "Aerodactyl",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/142.png"
   },
   {
-    "name": "Snorlax"
+    "name": "Snorlax",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/143.png"
   },
   {
-    "name": "Articuno"
+    "name": "Articuno",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/144.png"
   },
   {
-    "name": "Zapdos"
+    "name": "Zapdos",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/145.png"
   },
   {
-    "name": "Moltres"
+    "name": "Moltres",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/146.png"
   },
   {
-    "name": "Dratini"
+    "name": "Dratini",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/147.png"
   },
   {
-    "name": "Dragonair"
+    "name": "Dragonair",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/148.png"
   },
   {
-    "name": "Dragonite"
+    "name": "Dragonite",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/149.png"
   },
   {
-    "name": "Mewtwo"
+    "name": "Mewtwo",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/150.png"
   },
   {
-    "name": "Mew"
+    "name": "Mew",
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/151.png"
   }
 ]

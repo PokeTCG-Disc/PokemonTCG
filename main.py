@@ -1,14 +1,18 @@
-import discord
-from discord.ext import commands
 import os
-import random
-from dotenv import load_dotenv
 import json
-import requests
+import random
+from typing import Any
+
+import discord
+from discord import ui
+from discord.ext import commands
+from dotenv import load_dotenv
 import mysql.connector
+import requests
 
 #MySQL server stuff. DO NOT SHARE THIS PLEASE
-config = {
+
+config: dict[str, Any] = {
     'user': 'root',
     'password': 'sriSQL$2025',
     'host': '127.0.0.1',
@@ -16,58 +20,79 @@ config = {
     'database': 'pokemontcg', 
     'raise_on_warnings': True
 }
+
+base_url: str = 'https://pokeapi.co/api/v2/'
 cursor = None
 
-base_url = 'https://pokeapi.co/api/v2/'
 load_dotenv()
+
 intents = discord.Intents.default()
 intents.members = True #to access member info
 intents.message_content = True
-bot = commands.Bot(command_prefix='/', intents=intents)
-#client = discord.Client(intents=intents)
-token = os.getenv('TOKEN')
 
+bot = commands.Bot(command_prefix='/', intents=intents)
 
 #---------------------------------------------------------------------------------------------------------------------
 
 class Pokemon():
-    def __init__(self, name, types):
+    def __init__(self, name, types) -> None:
         self.id = id
         self.name = name
         self.type = types
 
 #----------------------------------------------------------------------------------------------------------------
 
-def get_pokemon(name):
-    url = f"{base_url}/pokemon/{name}"
-    responce = requests.get(url)
-    if responce.status_code == 200:
-        pokemon_data = responce.json()
-        return pokemon_data
-    else:
-        print(f"Error: Could not find Pokemon '{name}'. Status code: {responce.status_code}")
-        return None
-
-def create_pokemon_object(data):
-    name = data['name'].capitalize()
-    type_names = [t['type']['name'].capitalize() for t in data['types']]
-    type_str = ', '.join(type_names)
-    pokemon_object = Pokemon(name, type_str)
-    return pokemon_object
-
 @bot.event
 async def on_ready():
-    print("Logged in as a bot {0.user}".format(bot))
+    print(f"Logged in as a bot {bot.user}")
 
-
-# Function to open a pack and return a random Pokemon
-def pick_random_kanto_pokemon():
+def pick_random_kanto_pokemon() -> tuple[str, str]:
+    """
+    Pick a random Pokemon and return its name and image URL
+    """
     with open('kanto_pokemon.json', 'r') as p:
         data = json.load(p)
         random_pokemon = random.choice(data)
-        name = random_pokemon.get('name')
-        image_url = random_pokemon.get('url')
+        name: str = random_pokemon.get('name')
+        image_url: str = random_pokemon.get('url')
     return name, image_url
+
+def get_pokemon(name):
+    url = f"{base_url}/pokemon/{name}"
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        pokemon_data = response.json()
+        return pokemon_data
+    else:
+        print(f"Error: Could not find Pokemon '{name}'. Status code: {response.status_code}")
+        return None
+    
+def create_pokemon_object(data) -> Pokemon:
+    name: str = data['name'].capitalize()
+    type_names: list[str] = [t['type']['name'].capitalize() for t in data['types']]
+    type_str: str = ', '.join(type_names)
+    pokemon_object: Pokemon = Pokemon(name, type_str)
+    return pokemon_object
+
+class EmbedView(ui.LayoutView):
+    def __init__(self, name: str, hp: int, types: list[str], sprite_url: str, image_url: str) -> None:
+        super().__init__()
+
+        self.title = ui.TextDisplay(f"# You got a {name}!")
+        self.hp = ui.TextDisplay(f"-# **{hp} HP**")
+
+        types_string: str = ",".join([f"`{pkmn_type.capitalize()}`" for pkmn_type in types])
+        self.types = ui.TextDisplay(f"-# Types: {types_string}")
+
+        self.thumbnail = ui.Thumbnail(media=sprite_url)
+        self.section1 = ui.Section(self.title, self.hp, self.types, accessory=self.thumbnail)
+
+        self.separator = ui.Separator()
+
+        self.image = ui.MediaGallery(discord.MediaGalleryItem(media=image_url))
+
+        self.add_item(ui.Container(self.section1, self.separator, self.image))
 
 @bot.event
 async def on_message(message):
@@ -81,24 +106,30 @@ async def on_message(message):
         return
 
     if channel == "poke-tcg":
-        #when someone types start, we add the user to the users table
+        # When someone types start, we add the user to the users table
         if user_message.lower() == "start":
             #add smth where if the user types start but they are already stores in the database
             #print you have already entered the game
+            cursor = None
+
             try:
                 cnx = mysql.connector.connect(**config)
                 cursor = cnx.cursor()
+
                 add_user = """INSERT INTO users (user_id, user_name) VALUES (%s, %s) AS new ON DUPLICATE KEY UPDATE user_name=new.user_name"""
                 user_data = (message.author.id, username)
                 cursor.execute(add_user, user_data)
                 cnx.commit()
-                await message.channel.send(f"Data inserted {username}, {message.author.id}")
 
+                await message.channel.send(f"Data inserted {username}, {message.author.id}")
+            
             except mysql.connector.Error as err:
                 print("Error: {}".format(err))
+            
             finally:
                 if cursor is not None:
                     cursor.close()
+                
                 if 'cnx' in locals() and cnx is not None:
                     cnx.close()
 
@@ -109,7 +140,14 @@ async def on_message(message):
             pokemon_name, image_url = pick_random_kanto_pokemon()
             pokemon_data = get_pokemon(pokemon_name)
             pokemon = create_pokemon_object(pokemon_data)
-            await message.channel.send(f'You got!! {pokemon.name}, Types: {pokemon.type}')
 
+            name: str = pokemon.name
+            types: list[str] = [pkmn_type["type"]["name"] for pkmn_type in pokemon_data["types"]]
+            hp: int = pokemon_data["stats"][0]["base_stat"]
+            sprite_url: str = pokemon_data["sprites"]["front_default"]
+            image_url: str = pokemon_data["sprites"]["other"]["official-artwork"]["front_default"]
 
-bot.run(token)
+            await message.channel.send(view=EmbedView(name, hp, types, sprite_url, image_url))
+            
+
+bot.run(os.getenv('TOKEN'))

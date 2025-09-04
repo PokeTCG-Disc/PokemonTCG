@@ -13,7 +13,7 @@ import requests
 #MySQL server stuff. DO NOT SHARE THIS PLEASE
 
 config: dict[str, Any] = {
-    'user': 'root',
+    'user': 'srivatsav',
     'password': 'sriSQL$2025',
     'host': '127.0.0.1',
     'port': 3306,
@@ -75,6 +75,7 @@ def create_pokemon_object(data) -> Pokemon:
     pokemon_object: Pokemon = Pokemon(name, type_str)
     return pokemon_object
 
+
 class EmbedView(ui.LayoutView):
     def __init__(self, name: str, hp: int, types: list[str], sprite_url: str, image_url: str) -> None:
         super().__init__()
@@ -106,36 +107,61 @@ async def on_message(message):
         return
 
     if channel == "poke-tcg":
-        # When someone types start, we add the user to the users table
+        # When someone types start, we add the user to the users table. 
+        # If someone is already in the game, it won't store
         if user_message.lower() == "start":
-            #add smth where if the user types start but they are already stores in the database
-            #print you have already entered the game
             cursor = None
 
+            #get info from SQL:
             try:
                 cnx = mysql.connector.connect(**config)
                 cursor = cnx.cursor()
 
-                add_user = """INSERT INTO users (user_id, user_name) VALUES (%s, %s) AS new ON DUPLICATE KEY UPDATE user_name=new.user_name"""
-                user_data = (message.author.id, username)
-                cursor.execute(add_user, user_data)
-                cnx.commit()
+                get_user = "SELECT user_id FROM users"
+                cursor.execute(get_user)
+                all_ids = cursor.fetchall() #creates a tuple list will all the user ids
+                ids =[]
 
-                await message.channel.send(f"Data inserted {username}, {message.author.id}")
-            
-            except mysql.connector.Error as err:
-                print("Error: {}".format(err))
+                for id_tuple in all_ids:
+                    ids.append(id_tuple[0])
+
+            except mysql.connector.Error:
+                print("Error getting user info")
             
             finally:
                 if cursor is not None:
                     cursor.close()
-                
                 if 'cnx' in locals() and cnx is not None:
                     cnx.close()
 
-            await message.channel.send(f'Welcome to Pokemon TCG {username}!!')
-            return
-        
+            #add info to SQL:
+            if message.author.id in ids:
+                await message.channel.send("You are already in the game!!")
+            else:
+                try:
+                    cnx = mysql.connector.connect(**config)
+                    cursor = cnx.cursor()
+
+                    add_user = """INSERT INTO users (user_id, user_name) VALUES (%s, %s) AS new ON DUPLICATE KEY UPDATE user_name=new.user_name"""
+                    user_data = (message.author.id, username)
+                    cursor.execute(add_user, user_data)
+                    cnx.commit()
+
+                    #await message.channel.send(f"Data inserted {username}, {message.author.id}")
+                    await message.channel.send(f"Welcome to the game {username}!!")
+
+                    return message.author.id
+            
+                except mysql.connector.Error:
+                    print("Error adding user")
+            
+                finally:
+                    if cursor is not None:
+                        cursor.close()
+                    
+                    if 'cnx' in locals() and cnx is not None:
+                        cnx.close()
+
         elif user_message.lower() == "open a pack":
             pokemon_name, image_url = pick_random_kanto_pokemon()
             pokemon_data = get_pokemon(pokemon_name)

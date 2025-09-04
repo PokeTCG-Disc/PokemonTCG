@@ -1,6 +1,5 @@
 import os
 import random
-
 import aiohttp
 import discord
 from discord import ui
@@ -118,7 +117,6 @@ class EmbedLikeView(ui.LayoutView):
         # Since we're emulating an Embed, we will use a Thumbnail.
         self.thumbnail = ui.Thumbnail(media=url)
         self.section = ui.Section(self.random_text, accessory=self.thumbnail)
-        self.buttons = EmbedChangeButtons(self)
 
         # Wrap all of this inside a Container
         # To visualize how this looks, you can think of it similar to this ASCII diagram:

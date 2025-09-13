@@ -33,6 +33,41 @@ class Pokemon():
         self.name = name
         self.type = types
 
+class EmbedView(ui.LayoutView):
+    def __init__(self, name: str, hp: int, types: list[str], sprite_url: str, image_url: str) -> None:
+        super().__init__()
+
+        self.title = ui.TextDisplay(f"# You got a {name}!")
+        self.hp = ui.TextDisplay(f"-# **{hp} HP**")
+
+        types_string: str = ",".join([f"`{pkmn_type.capitalize()}`" for pkmn_type in types])
+        self.types = ui.TextDisplay(f"-# Types: {types_string}")
+
+        self.thumbnail = ui.Thumbnail(media=sprite_url)
+        self.section1 = ui.Section(self.title, self.hp, self.types, accessory=self.thumbnail)
+
+        self.separator = ui.Separator()
+
+        self.image = ui.MediaGallery(discord.MediaGalleryItem(media=image_url))
+
+        self.add_item(ui.Container(self.section1, self.separator, self.image))
+        
+class EmbedViewForSelection(ui.LayoutView):
+    def __init__(self, name: str, hp: int, types: list[str], sprite_url: str) -> None:
+        super().__init__()
+
+        self.title = ui.TextDisplay(f"# You got a {name}!")
+        self.hp = ui.TextDisplay(f"-# **{hp} HP**")
+
+        types_string: str = ",".join([f"`{pkmn_type.capitalize()}`" for pkmn_type in types])
+        self.types = ui.TextDisplay(f"-# Types: {types_string}")
+
+        self.thumbnail = ui.Thumbnail(media=sprite_url)
+        self.section1 = ui.Section(self.title, self.hp, self.types, accessory=self.thumbnail)
+
+        self.separator = ui.Separator()
+
+        self.add_item(ui.Container(self.section1, self.separator))
 #----------------------------------------------------------------------------------------------------------------
 
 @bot.event
@@ -69,24 +104,50 @@ def create_pokemon_object(data) -> Pokemon:
     return pokemon_object
 
 
-class EmbedView(ui.LayoutView):
-    def __init__(self, name: str, hp: int, types: list[str], sprite_url: str, image_url: str) -> None:
-        super().__init__()
+# Global dictionary to track users picking a starter
+starter_selection = {}
 
-        self.title = ui.TextDisplay(f"# You got a {name}!")
-        self.hp = ui.TextDisplay(f"-# **{hp} HP**")
+async def display_starter_pokemon(message):
+    names = ["bulbasaur", "charmander", "squirtle"]
+    for name in names:
+        pokemon_name = get_pokemon(name)
+        pokemon_object = create_pokemon_object(pokemon_name)
 
-        types_string: str = ",".join([f"`{pkmn_type.capitalize()}`" for pkmn_type in types])
-        self.types = ui.TextDisplay(f"-# Types: {types_string}")
+        name_str: str = pokemon_object.name
+        types: list[str] = [pkmn_type["type"]["name"] for pkmn_type in pokemon_name["types"]]
+        hp: int = pokemon_name["stats"][0]["base_stat"]
+        sprite_url: str = pokemon_name["sprites"]["front_default"]
 
-        self.thumbnail = ui.Thumbnail(media=sprite_url)
-        self.section1 = ui.Section(self.title, self.hp, self.types, accessory=self.thumbnail)
+        await message.channel.send(view=EmbedViewForSelection(name_str, hp, types, sprite_url))
+    await message.channel.send("Pick your starter Pokemon!!")
+    # Add user to starter selection state
+    starter_selection[message.author.id] = True
 
-        self.separator = ui.Separator()
+async def open_a_pack(message, username):
+        pokemon_name, image_url = pick_random_kanto_pokemon()
+        pokemon_data = get_pokemon(pokemon_name)
+        pokemon = create_pokemon_object(pokemon_data)
 
-        self.image = ui.MediaGallery(discord.MediaGalleryItem(media=image_url))
+        name: str = pokemon.name
+        types: list[str] = [pkmn_type["type"]["name"] for pkmn_type in pokemon_data["types"]]
+        hp: int = pokemon_data["stats"][0]["base_stat"]
+        sprite_url: str = pokemon_data["sprites"]["front_default"]
+        image_url: str = pokemon_data["sprites"]["other"]["official-artwork"]["front_default"]
 
-        self.add_item(ui.Container(self.section1, self.separator, self.image))
+        await message.channel.send(view=EmbedView(name, hp, types, sprite_url, image_url))
+
+        user_database = client[username]
+        user_collection2 = user_database["pokeCards"]
+
+        insert_pokeInfo = {
+            "name": name,
+            "types": types,
+            "hp": hp,
+            "sprite_url": sprite_url,
+            "image_url": image_url
+        }
+        user_collection2.insert_one(insert_pokeInfo)
+
 
 @bot.event
 async def on_message(message):
@@ -97,6 +158,40 @@ async def on_message(message):
     print(f'Message {user_message} by {username} on {channel}')
 
     if message.author == bot.user:
+        return
+
+
+    # Handle starter selection state
+    if message.author.id in starter_selection:
+        choice = user_message.lower().strip()
+        valid_choices = ["bulbasaur", "charmander", "squirtle"]
+        if choice in valid_choices:
+            # Save the user's starter choice to their collection
+            user_database = client[username]
+            user_collection2 = user_database["pokeCards"]
+            pokemon_data = get_pokemon(choice)
+            pokemon = create_pokemon_object(pokemon_data)
+
+            name: str = pokemon.name
+            types: list[str] = [pkmn_type["type"]["name"] for pkmn_type in pokemon_data["types"]]
+            hp: int = pokemon_data["stats"][0]["base_stat"]
+            sprite_url: str = pokemon_data["sprites"]["front_default"]
+            image_url: str = pokemon_data["sprites"]["other"]["official-artwork"]["front_default"]
+
+            await message.channel.send(view=EmbedView(name, hp, types, sprite_url, image_url))
+
+            insert_pokeInfo = {
+                "name": name,
+                "types": types,
+                "hp": hp,
+                "sprite_url": sprite_url,
+                "image_url": image_url
+            }
+            user_collection2.insert_one(insert_pokeInfo)
+            await message.channel.send(f"Congratulations {username}, you chose {choice.capitalize()} as your starter!")
+            del starter_selection[message.author.id]
+        else:
+            await message.channel.send("Please type the name of your starter exactly as shown (bulbasaur, charmander, or squirtle).")
         return
 
     if channel == "poke-tcg":
@@ -115,28 +210,35 @@ async def on_message(message):
                 try:
                     client.admin.command('ping')
                     print("Pinged your deployment. You successfully connected to MongoDB!")
-
+                    #add user_name and user_id to the database
                     insert_query = {
                         "username": username,
                         "user_id": message.author.id
                     }
                     user_info_collection.insert_one(insert_query)
                     await message.channel.send(f"Welcome to Pokemon TCG {username}")
+
+                    #create a new table for each user to store the cards they own and user stats
+                    user_database = client[username]
+                    #info stores name, id, number of cards owned, player level, battle #, # wins, etc
+                    user_collection1 = user_database[f"{username}Info"]
+                    user_collection2 = user_database["pokeCards"]
+                    #add collection for trainers, items, etc
+
+                    insert_info = {
+                        "username": username,
+                        "user_id": message.author.id
+                    }
+                    user_collection1.insert_one(insert_info)
+
+                    #pick a starter pokemon
+                    await display_starter_pokemon(message)
+
                 except Exception as e:
                     print(e)
 
         elif user_message.lower() == "open a pack":
-            pokemon_name, image_url = pick_random_kanto_pokemon()
-            pokemon_data = get_pokemon(pokemon_name)
-            pokemon = create_pokemon_object(pokemon_data)
-
-            name: str = pokemon.name
-            types: list[str] = [pkmn_type["type"]["name"] for pkmn_type in pokemon_data["types"]]
-            hp: int = pokemon_data["stats"][0]["base_stat"]
-            sprite_url: str = pokemon_data["sprites"]["front_default"]
-            image_url: str = pokemon_data["sprites"]["other"]["official-artwork"]["front_default"]
-
-            await message.channel.send(view=EmbedView(name, hp, types, sprite_url, image_url))
+            await open_a_pack(message, username)
             
 
 bot.run(os.getenv('TOKEN'))

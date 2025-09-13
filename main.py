@@ -7,22 +7,14 @@ import discord
 from discord import ui
 from discord.ext import commands
 from dotenv import load_dotenv
-import mysql.connector
 import requests
+
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
 
 #MySQL server stuff. DO NOT SHARE THIS PLEASE
 
-config: dict[str, Any] = {
-    'user': 'srivatsav',
-    'password': 'sriSQL$2025',
-    'host': '127.0.0.1',
-    'port': 3306,
-    'database': 'pokemontcg', 
-    'raise_on_warnings': True
-}
-
 base_url: str = 'https://pokeapi.co/api/v2/'
-cursor = None
 
 load_dotenv()
 
@@ -31,6 +23,7 @@ intents.members = True #to access member info
 intents.message_content = True
 
 bot = commands.Bot(command_prefix='/', intents=intents)
+client = MongoClient(os.getenv('uri'), server_api=ServerApi('1'))
 
 #---------------------------------------------------------------------------------------------------------------------
 
@@ -110,57 +103,27 @@ async def on_message(message):
         # When someone types start, we add the user to the users table. 
         # If someone is already in the game, it won't store
         if user_message.lower() == "start":
-            cursor = None
 
-            #get info from SQL:
-            try:
-                cnx = mysql.connector.connect(**config)
-                cursor = cnx.cursor()
+            user_info_databases = client["all_users"] #all_users databases already created manually 
+            user_info_collection = user_info_databases["user_info"]
 
-                get_user = "SELECT user_id FROM users"
-                cursor.execute(get_user)
-                all_ids = cursor.fetchall() #creates a tuple list will all the user ids
-                ids =[]
+            result = user_info_collection.find_one({"user_id": message.author.id})
 
-                for id_tuple in all_ids:
-                    ids.append(id_tuple[0])
-
-            except mysql.connector.Error:
-                print("Error getting user info")
-            
-            finally:
-                if cursor is not None:
-                    cursor.close()
-                if 'cnx' in locals() and cnx is not None:
-                    cnx.close()
-
-            #add info to SQL:
-            if message.author.id in ids:
+            if result:
                 await message.channel.send("You are already in the game!!")
             else:
                 try:
-                    cnx = mysql.connector.connect(**config)
-                    cursor = cnx.cursor()
+                    client.admin.command('ping')
+                    print("Pinged your deployment. You successfully connected to MongoDB!")
 
-                    add_user = """INSERT INTO users (user_id, user_name) VALUES (%s, %s) AS new ON DUPLICATE KEY UPDATE user_name=new.user_name"""
-                    user_data = (message.author.id, username)
-                    cursor.execute(add_user, user_data)
-                    cnx.commit()
-
-                    #await message.channel.send(f"Data inserted {username}, {message.author.id}")
-                    await message.channel.send(f"Welcome to the game {username}!!")
-
-                    return message.author.id
-            
-                except mysql.connector.Error:
-                    print("Error adding user")
-            
-                finally:
-                    if cursor is not None:
-                        cursor.close()
-                    
-                    if 'cnx' in locals() and cnx is not None:
-                        cnx.close()
+                    insert_query = {
+                        "username": username,
+                        "user_id": message.author.id
+                    }
+                    user_info_collection.insert_one(insert_query)
+                    await message.channel.send(f"Welcome to Pokemon TCG {username}")
+                except Exception as e:
+                    print(e)
 
         elif user_message.lower() == "open a pack":
             pokemon_name, image_url = pick_random_kanto_pokemon()

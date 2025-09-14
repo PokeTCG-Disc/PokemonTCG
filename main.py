@@ -1,8 +1,9 @@
 import os
-import discord
-from discord.ext import commands
 from dotenv import load_dotenv
 
+import discord
+from discord import app_commands
+from discord.ext import commands
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
@@ -19,15 +20,19 @@ intents.message_content = True
 bot = commands.Bot(command_prefix='/', intents=intents)
 client = MongoClient(os.getenv('uri'), server_api=ServerApi('1'))
 
-
 @bot.event
 async def on_ready():
     print(f"Logged in as a bot {bot.user}")
-
+    
+    try:
+        synced = await bot.tree.sync()
+        print(f"Synced {len(synced)} command(s)")
+    except Exception as e:
+        print(e)
 
 @bot.event
 async def on_message(message):
-    username = str(message.author).split("#")[0]
+    username = message.author.name
     channel = str(message.channel.name)
     user_message = str(message.content)
 
@@ -44,7 +49,7 @@ async def on_message(message):
             # Save the user's starter choice to their collection
             user_database = client[username]
             user_collection2 = user_database["poke_cards"]
-            user_collection1 = user_database[f"{username}"]
+            user_collection1 = user_database["user_info"]
 
             name, types, hp, sprite_url, image_url = createCard(choice)
 
@@ -59,11 +64,14 @@ async def on_message(message):
             }
 
             user_collection2.insert_one(insert_pokeInfo)
+
             query_filter = {"number_of_poke_cards": number_of_pokemon_cards}
             update_operation = {"$set":
-                {"number_of_poke_cards": number_of_pokemon_cards+1}                    
+                {"number_of_poke_cards": number_of_pokemon_cards + 1}                    
             }
+
             user_collection1.update_one(query_filter, update_operation)
+            
             await message.channel.send(f"Congratulations {username}, you chose {choice.capitalize()} as your starter!")
             del starter_selection[message.author.id]
         else:
@@ -97,7 +105,7 @@ async def on_message(message):
                     #create a new table for each user to store the cards they own and user stats
                     user_database = client[username]
                     #info stores name, id, number of cards owned, player level, battle #, # wins, etc
-                    user_collection1 = user_database[f"{username}"]
+                    user_collection1 = user_database["user_info"]
                     
                     #add collection for trainers, items, etc
 
@@ -114,8 +122,9 @@ async def on_message(message):
                 except Exception as e:
                     print(e)
 
-        elif user_message.lower() == "open a pack":
-            await open_a_pack(message, username)
-            
+@bot.tree.command()
+async def open(interaction: discord.Interaction):
+    """Open a Pokémon card pack"""
+    await open_a_pack(interaction, interaction.user.name)
 
 bot.run(os.getenv('TOKEN'))

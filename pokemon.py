@@ -1,9 +1,12 @@
 import os
 import json
 import random
+
+import discord
 import requests
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
+
 from view import EmbedView, EmbedViewForSelection
 
 from dotenv import load_dotenv
@@ -62,12 +65,12 @@ def createCard(pokemon_name) -> tuple[str, str, int, str, str]:
 
     return name, types, hp, sprite_url, image_url
 
-async def open_a_pack(message, username):
+async def open_a_pack(interaction: discord.Interaction, username: str) -> None:
     pokemon_name, image_url = pick_random_kanto_pokemon()
 
     name, types, hp, sprite_url, image_url = createCard(pokemon_name)
 
-    await message.channel.send(view=EmbedView(name, hp, types, sprite_url, image_url))
+    await interaction.response.send_message(view=EmbedView(name, hp, types, sprite_url, image_url))
 
     user_database = client[username]
     user_collection2 = user_database["poke_cards"]
@@ -84,7 +87,7 @@ async def open_a_pack(message, username):
         print(f"Inserted card for {username}: {result.inserted_id}")
 
         # Robustly update number_of_poke_cards for the user
-        user_collection1 = user_database[f"{username}"]
+        user_collection1 = user_database[f"user_info"]
         # Find the user's info document 
         user_info = user_collection1.find_one({})
         if user_info and "number_of_poke_cards" in user_info:

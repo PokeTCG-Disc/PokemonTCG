@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
-from pokemon import starter_selection
+from pokemon import starter_selection, number_of_pokemon_cards
 from pokemon import open_a_pack, display_starter_pokemon, createCard
 from view import EmbedView
 
@@ -43,7 +43,8 @@ async def on_message(message):
         if choice in valid_choices:
             # Save the user's starter choice to their collection
             user_database = client[username]
-            user_collection2 = user_database["pokeCards"]
+            user_collection2 = user_database["poke_cards"]
+            user_collection1 = user_database[f"{username}"]
 
             name, types, hp, sprite_url, image_url = createCard(choice)
 
@@ -56,7 +57,13 @@ async def on_message(message):
                 "sprite_url": sprite_url,
                 "image_url": image_url
             }
+
             user_collection2.insert_one(insert_pokeInfo)
+            query_filter = {"number_of_poke_cards": number_of_pokemon_cards}
+            update_operation = {"$set":
+                {"number_of_poke_cards": number_of_pokemon_cards+1}                    
+            }
+            user_collection1.update_one(query_filter, update_operation)
             await message.channel.send(f"Congratulations {username}, you chose {choice.capitalize()} as your starter!")
             del starter_selection[message.author.id]
         else:
@@ -90,13 +97,14 @@ async def on_message(message):
                     #create a new table for each user to store the cards they own and user stats
                     user_database = client[username]
                     #info stores name, id, number of cards owned, player level, battle #, # wins, etc
-                    user_collection1 = user_database[f"{username}Info"]
+                    user_collection1 = user_database[f"{username}"]
                     
                     #add collection for trainers, items, etc
 
                     insert_info = {
                         "username": username,
-                        "user_id": message.author.id
+                        "user_id": message.author.id,
+                        "number_of_poke_cards": number_of_pokemon_cards
                     }
                     user_collection1.insert_one(insert_info)
 

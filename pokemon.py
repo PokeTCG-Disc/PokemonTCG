@@ -13,6 +13,8 @@ load_dotenv()
 base_url: str = 'https://pokeapi.co/api/v2/'
 client = MongoClient(os.getenv('uri'), server_api=ServerApi('1'))
 
+number_of_pokemon_cards = 0
+
 class Pokemon():
     def __init__(self, name, types) -> None:
         self.id = id
@@ -68,7 +70,7 @@ async def open_a_pack(message, username):
     await message.channel.send(view=EmbedView(name, hp, types, sprite_url, image_url))
 
     user_database = client[username]
-    user_collection2 = user_database["pokeCards"]
+    user_collection2 = user_database["poke_cards"]
 
     insert_pokeInfo = {
         "name": name,
@@ -80,6 +82,16 @@ async def open_a_pack(message, username):
     try:
         result = user_collection2.insert_one(insert_pokeInfo)
         print(f"Inserted card for {username}: {result.inserted_id}")
+
+        # Robustly update number_of_poke_cards for the user
+        user_collection1 = user_database[f"{username}"]
+        # Find the user's info document 
+        user_info = user_collection1.find_one({})
+        if user_info and "number_of_poke_cards" in user_info:
+            new_count = user_info["number_of_poke_cards"] + 1
+        else:
+            new_count = 1
+        user_collection1.update_one({}, {"$set": {"number_of_poke_cards": new_count}}, upsert=True)
     except Exception as e:
         print(f"Failed to insert card for {username}: {e}")
 

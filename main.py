@@ -8,7 +8,7 @@ from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
 from pokemon import starter_selection, number_of_pokemon_cards
-from pokemon import open_a_pack, display_starter_pokemon, createCard
+from pokemon import open_a_pack, display_starter_pokemon, createCard, display_poke_cards
 from view import EmbedView
 
 load_dotenv()
@@ -126,5 +126,10 @@ async def on_message(message):
 async def open(interaction: discord.Interaction):
     """Open a Pokémon card pack"""
     await open_a_pack(interaction, interaction.user.name)
+
+@bot.tree.command()
+async def displaycards(interaction: discord.Integration):
+    await display_poke_cards(interaction, interaction.user.name)
+
 
 bot.run(os.getenv('TOKEN'))

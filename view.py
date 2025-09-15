@@ -36,3 +36,22 @@ class EmbedViewForSelection(ui.LayoutView):
         self.separator = ui.Separator()
 
         self.add_item(ui.Container(self.section1, self.separator))
+
+class EmbedViewForPokedex(ui.LayoutView):
+    def __init__(self, name: str, hp: int, types: list[str], sprite_url: str, image_url: str) -> None:
+        super().__init__()
+
+        self.title = ui.TextDisplay(f"# You got a {name}!")
+        self.hp = ui.TextDisplay(f"-# **{hp} HP**")
+
+        types_string: str = ",".join([f"`{pkmn_type.capitalize()}`" for pkmn_type in types])
+        self.types = ui.TextDisplay(f"-# Types: {types_string}")
+
+        self.thumbnail = ui.Thumbnail(media=sprite_url)
+        self.section1 = ui.Section(self.title, self.hp, self.types, accessory=self.thumbnail)
+
+        self.separator = ui.Separator()
+
+        self.image = ui.MediaGallery(discord.MediaGalleryItem(media=image_url))
+
+        self.add_item(ui.Container(self.section1, self.separator, self.image))

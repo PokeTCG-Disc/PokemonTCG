@@ -7,7 +7,7 @@ import requests
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
-from view import EmbedView, EmbedViewForSelection
+from view import EmbedView, EmbedViewForSelection, EmbedViewForPokedex
 
 from dotenv import load_dotenv
 
@@ -116,3 +116,21 @@ async def display_starter_pokemon(message):
     await message.channel.send("Pick your starter Pokemon!!")
     # Add user to starter selection state
     starter_selection[message.author.id] = True
+
+async def display_poke_cards(interaction: discord.Interaction, username: str) -> None:
+    user_database = client[username]
+    user_collection = user_database["poke_cards"]
+
+    results = list(user_collection.find())
+    if not results:
+        await interaction.response.send_message("No cards found.")
+        return
+
+    await interaction.response.send_message(str(results[0]))
+    for result in results[1:]:
+        name = result["name"]
+        types = result["types"]
+        hp = result["hp"]
+        sprite_url = result["sprite_url"]
+        image_url = result["image_url"]
+        await interaction.followup.send(view=EmbedViewForPokedex(name, hp, types, sprite_url, image_url))

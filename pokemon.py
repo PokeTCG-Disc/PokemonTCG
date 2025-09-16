@@ -7,7 +7,7 @@ import requests
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
-from view import EmbedView, EmbedViewForSelection, EmbedViewForPokedex, EmbedViewForDeleting
+from view import EmbedView, EmbedViewForSelection, EmbedViewForPokedex
 
 from dotenv import load_dotenv
 
@@ -128,12 +128,6 @@ async def display_poke_cards(interaction: discord.Interaction, username: str) ->
     if not results:
         await interaction.response.send_message("No cards found.")
         return
-
-    #await interaction.response.send_message(str(results[0]))
-    for result in results[1:]:
-        name = result["name"]
-        types = result["types"]
-        hp = result["hp"]
-        sprite_url = result["sprite_url"]
-        image_url = result["image_url"]
-        await interaction.followup.send(view=EmbedViewForPokedex(name, hp, types, sprite_url, image_url))
+    names = [result["name"] for result in results]
+    sprite_urls = [result["sprite_url"] for result in results]
+    await interaction.response.send_message(view=EmbedViewForPokedex(names, sprite_urls))

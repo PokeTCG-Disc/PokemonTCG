@@ -37,6 +37,7 @@ class EmbedViewForSelection(ui.LayoutView):
 
         self.add_item(ui.Container(self.section1, self.separator))
 
+#add buttons
 class EmbedViewForPokedex(ui.LayoutView):
     def __init__(self, name: str, hp: int, types: list[str], sprite_url: str, image_url: str) -> None:
         super().__init__()

@@ -7,7 +7,7 @@ import requests
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
-from view import EmbedView, EmbedViewForSelection, EmbedViewForPokedex
+from view import EmbedView, EmbedViewForSelection, EmbedViewForPokedex, EmbedViewForDeleting
 
 from dotenv import load_dotenv
 
@@ -66,37 +66,40 @@ def createCard(pokemon_name) -> tuple[str, str, int, str, str]:
     return name, types, hp, sprite_url, image_url
 
 async def open_a_pack(interaction: discord.Interaction, username: str) -> None:
-    pokemon_name, image_url = pick_random_kanto_pokemon()
+    for i in range(1, 6):
+        pokemon_name, image_url = pick_random_kanto_pokemon()
+        name, types, hp, sprite_url, image_url = createCard(pokemon_name)
 
-    name, types, hp, sprite_url, image_url = createCard(pokemon_name)
-
-    await interaction.response.send_message(view=EmbedView(name, hp, types, sprite_url, image_url))
-
-    user_database = client[username]
-    user_collection2 = user_database["poke_cards"]
-
-    insert_pokeInfo = {
-        "name": name,
-        "types": types,
-        "hp": hp,
-        "sprite_url": sprite_url,
-        "image_url": image_url
-    }
-    try:
-        result = user_collection2.insert_one(insert_pokeInfo)
-        print(f"Inserted card for {username}: {result.inserted_id}")
-
-        # Robustly update number_of_poke_cards for the user
-        user_collection1 = user_database[f"user_info"]
-        # Find the user's info document 
-        user_info = user_collection1.find_one({})
-        if user_info and "number_of_poke_cards" in user_info:
-            new_count = user_info["number_of_poke_cards"] + 1
+        if i == 1:
+            await interaction.response.send_message(view=EmbedView(name, hp, types, sprite_url, image_url))
         else:
-            new_count = 1
-        user_collection1.update_one({}, {"$set": {"number_of_poke_cards": new_count}}, upsert=True)
-    except Exception as e:
-        print(f"Failed to insert card for {username}: {e}")
+            await interaction.followup.send(view=EmbedView(name, hp, types, sprite_url, image_url))
+
+        user_database = client[username]
+        user_collection2 = user_database["poke_cards"]
+
+        insert_pokeInfo = {
+            "name": name,
+            "types": types,
+            "hp": hp,
+            "sprite_url": sprite_url,
+            "image_url": image_url
+        }
+        try:
+            result = user_collection2.insert_one(insert_pokeInfo)
+            #print(f"Inserted card for {username}: {result.inserted_id}")
+
+            # Robustly update number_of_poke_cards for the user
+            user_collection1 = user_database[f"user_info"]
+            # Find the user's info document 
+            user_info = user_collection1.find_one({})
+            if user_info and "number_of_poke_cards" in user_info:
+                new_count = user_info["number_of_poke_cards"] + 1
+            else:
+                new_count = 1
+            user_collection1.update_one({}, {"$set": {"number_of_poke_cards": new_count}}, upsert=True)
+        except Exception as e:
+            print(f"Failed to insert card for {username}: {e}")
 
 # Global dictionary to track users picking a starter
 starter_selection = {}
@@ -126,7 +129,7 @@ async def display_poke_cards(interaction: discord.Interaction, username: str) ->
         await interaction.response.send_message("No cards found.")
         return
 
-    await interaction.response.send_message(str(results[0]))
+    #await interaction.response.send_message(str(results[0]))
     for result in results[1:]:
         name = result["name"]
         types = result["types"]

@@ -24,11 +24,11 @@ class Pokemon():
         self.name = name
         self.type = types
 
-def pick_random_kanto_pokemon() -> tuple[str, str]:
+def pick_random_pokemon() -> tuple[str, str]:
     """
     Pick a random Pokemon and return its name and image URL
     """
-    with open('kanto_pokemon.json', 'r') as p:
+    with open('pokemon.json', 'r') as p:
         data = json.load(p)
         random_pokemon = random.choice(data)
         name: str = random_pokemon.get('name')
@@ -67,7 +67,7 @@ def createCard(pokemon_name) -> tuple[str, str, int, str, str]:
 
 async def open_a_pack(interaction: discord.Interaction, username: str) -> None:
     for i in range(1, 6):
-        pokemon_name, image_url = pick_random_kanto_pokemon()
+        pokemon_name, image_url = pick_random_pokemon()
         name, types, hp, sprite_url, image_url = createCard(pokemon_name)
 
         if i == 1:
